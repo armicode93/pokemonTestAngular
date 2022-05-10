@@ -1,0 +1,37 @@
+<app-navbar> </app-navbar>
+
+<app-carousel></app-carousel>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <app-equipe-liste></app-equipe-liste>
+    </div>
+    <div class="col-md">
+      <input
+        #input
+        (keyup.enter)="selectEquipe(input.value)"
+        type="number"
+       />
+     <p *ngIf="pokemonSelected">
+       Vous avez selectionne le pokemon : {{pokemonSelected?.name}}
+     </p>
+      <p *ngIf="!pokemonSelected">
+        No pokemon find.
+      </p>
+      <p *ngFor="let pokemon of equipeList">
+        {{pokemon.name}}
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+<app-footer></app-footer>
+
+
+
+
