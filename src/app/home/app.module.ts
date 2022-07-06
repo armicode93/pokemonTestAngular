@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from "@angular/router";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {PokemonModule} from "./pokemon/pokemon.module";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {PokemonModule} from "./pokemon/pokemon.module";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     PokemonModule,
     AppRoutingModule,
 
