@@ -1,21 +1,37 @@
 <form *ngIf="pokemon" (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
+  <! se ho un pokemon metto  il formulario -->
+
+  <! (ngSubmit)="onSubmit()" evenement ngSubmit , evenement angular, gli diciamo che lorsque le user il va sumetre le formulaire il va declancher onSubmit -->
+  <! #pokemonForm="ngForm"   creation variable reference dans le template et je attribu le resultat de la directive ngForm, questa direttiva ci aiutera a dichiarare
+  <! la variabile direttamente nel template che si chiamera pokemonForm, ngForm rappresenta i lformulaire au nvieau global -->
+
   <div class="row">
     <div class="col s8 offset-s2">
       <div class="card-panel">
 
         <!-- Pokemon name -->
+        <!-- Premiere champs -->
         <div class="form-group">
           <label for="name">Nom</label>
           <input type="text" class="form-control" id="name"
                  required
+
                  pattern="^[a-zA-Z0-9àéèç]{1,25}$"
                  [(ngModel)]="pokemon.name" name="name"
                  #name="ngModel">
+          <!--  avec required pattern    ici je forni direct de regle de validation  -->
+
+          <!-- [(ngModel)]="pokemon.name" name="name" ca nous permet de mettre en place une liason de donne bidirectionelle
+          quando lo user andra a modificare il nome di un pokemon,saremo informati di cio cote composant, et la vue va se mettre a jour -->
+
+          <!-- #name="ngModel" le resultat de ngModel on va l-attribue directement a uen variable reference dans le template,stockage del name
+           ngModel rappresenta un champs du formulaire -->
 
           <div [hidden]="name.valid || name.pristine"
                class="card-panel red accent-1">
             Le nom du pokémon est requis (1-25).
           </div>
+          <!--   <div [hidden]="name.valid || name.pristine" hiden cioe nascondere o far veder l-elemento, if il champe e- valido o non e-stato toccato (pristine) non e stato fatto nnt -->
         </div>
 
         <!-- Pokemon hp -->
@@ -47,6 +63,10 @@
         </div>
 
         <!-- Pokemon types -->
+        <!-- qui avremo una checkbox con tutti i tipi -->
+        <!-- [checked]="hasType(type)" selezioneremo la casella con i lnostro metodo hasType -->
+        <!--    [disabled]="!isTypesValid(type)" disattiveremo tutte le caselle se lo user non ha rispettato alcune regole, se per esempio ha selezionato piu di tre caselle, o se e- gia selezionato u ntipo per il pokemon -->
+        <!-- (change)="selectType($event, type)"/> ecoute evenement change per vedere se la case selectioner ou pas  e gl iassociamo la methode selectType -->
         <form class="form-group">
           <label for="types">Types</label>
           <p *ngFor="let type of types">
